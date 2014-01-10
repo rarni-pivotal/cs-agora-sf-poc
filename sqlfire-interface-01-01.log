@@ -1,0 +1,349 @@
+
+[info 2013/12/13 11:35:17.767 EST  <main> tid=0x1] 
+  ---------------------------------------------------------------------------
+  
+    Copyright (C) 1997-2013 VMware, Inc. All rights reserved. This product is
+    protected by U.S. and international copyright and intellectual property
+    laws. VMware products are covered by one or more patents listed at
+    http://www.vmware.com/go/patents.  VMware is a registered trademark or
+    trademark of VMware, Inc. in the United States and/or other jurisdictions.
+    All other marks and names mentioned herein may be trademarks of their
+    respective companies.
+  
+  ---------------------------------------------------------------------------
+  Java version:   1.1.1 build 42624 08/05/2013 10:14:33 PDT javac 1.6.0_26
+  Native version: native code unavailable
+  Source revision: 42624
+  Source repository: gemfire/branches/sqlfire110X_maint
+  Running on: pivhdsne.localdomain/172.16.48.164, 2 cpu(s), amd64 Linux 2.6.32-358.el6.x86_64
+  Process ID: 10394
+  User: gpadmin
+  Current dir: /home/gpadmin/workspace/SFBootStrap
+  Home dir: /home/gpadmin
+  Class Path:
+    /home/gpadmin/workspace/SFBootStrap/bin
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/antlr.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/commons-cli.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/commons-logging.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/commons-modeler-2.0.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/jline.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/jna.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/mail.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/mx4j.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/mx4j-remote.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/mx4j-tools.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/sqlfire.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/sqlfireclient.jar
+    /opt/vmware/vfabric-sqlfire/vFabric_SQLFire_111/lib/sqlfiretools.jar
+    /home/gpadmin/Tools/jars/asg.cliche-110413.jar
+    /home/gpadmin/projects/csagora/log4j.jar
+  Library Path:
+    /usr/java/jdk1.6.0_26/jre/lib/amd64/server
+    /usr/java/jdk1.6.0_26/jre/lib/amd64
+    /usr/java/jdk1.6.0_26/jre/../lib/amd64
+    /usr/local/hawq/./lib
+    /usr/local/hawq/./ext/python/lib
+    /usr/java/packages/lib/amd64
+    /usr/lib64
+    /lib64
+    /lib
+    /usr/lib
+  System Properties:
+      file.encoding = UTF-8
+      file.encoding.pkg = sun.io
+      file.separator = /
+      gemfire.append-log = true
+      java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+      java.awt.printerjob = sun.print.PSPrinterJob
+      java.class.version = 50.0
+      java.endorsed.dirs = /usr/java/jdk1.6.0_26/jre/lib/endorsed
+      java.ext.dirs = /usr/java/jdk1.6.0_26/jre/lib/ext:/usr/java/packages/lib/ext
+      java.home = /usr/java/jdk1.6.0_26/jre
+      java.io.tmpdir = /tmp
+      java.runtime.name = Java(TM) SE Runtime Environment
+      java.runtime.version = 1.6.0_26-b03
+      java.specification.name = Java Platform API Specification
+      java.specification.vendor = Sun Microsystems Inc.
+      java.specification.version = 1.6
+      java.vendor = Sun Microsystems Inc.
+      java.vendor.url = http://java.sun.com/
+      java.vendor.url.bug = http://java.sun.com/cgi-bin/bugreport.cgi
+      java.version = 1.6.0_26
+      java.vm.info = mixed mode
+      java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+      java.vm.specification.name = Java Virtual Machine Specification
+      java.vm.specification.vendor = Sun Microsystems Inc.
+      java.vm.specification.version = 1.0
+      java.vm.vendor = Sun Microsystems Inc.
+      java.vm.version = 20.1-b02
+      line.separator = 
+  
+      os.version = 2.6.32-358.el6.x86_64
+      p2p.useSSL = false
+      path.separator = :
+      sqlfire.log-file = sqlfire-interface.log
+      sun.arch.data.model = 64
+      sun.boot.class.path = /usr/java/jdk1.6.0_26/jre/lib/resources.jar:/usr/java/jdk1.6.0_26/jre/lib/rt.jar:/usr/java/jdk1.6.0_26/jre/lib/sunrsasign.jar:/usr/java/jdk1.6.0_26/jre/lib/jsse.jar:/usr/java/jdk1.6.0_26/jre/lib/jce.jar:/usr/java/jdk1.6.0_26/jre/lib/charsets.jar:/usr/java/jdk1.6.0_26/jre/lib/modules/jdk.boot.jar:/usr/java/jdk1.6.0_26/jre/classes
+      sun.boot.library.path = /usr/java/jdk1.6.0_26/jre/lib/amd64
+      sun.cpu.endian = little
+      sun.cpu.isalist = 
+      sun.desktop = gnome
+      sun.io.unicode.encoding = UnicodeLittle
+      sun.java.command = SFBootstrapper
+      sun.java.launcher = SUN_STANDARD
+      sun.jnu.encoding = UTF-8
+      sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+      sun.nio.ch.bugLevel = 
+      sun.os.patch.level = unknown
+      user.country = US
+      user.language = en
+      user.timezone = America/New_York
+  ---------------------------------------------------------------------------
+  
+
+[config 2013/12/13 11:35:17.782 EST  <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with api ###
+  locators=pivhdsne[56788]
+  log-file=sqlfire-interface.log
+  mcast-port=0
+  statistic-archive-file=pivhdsne-stst.sfs
+  statistic-sampling-enabled=true
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cache-xml-file=cache.xml
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=/home/gpadmin/workspace/SFBootStrap
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  groups=
+  jmx-manager=false
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-hostname-for-clients=
+  jmx-manager-http-port=8080
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=10000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-port=0
+  memcached-protocol=ASCII
+  name=
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-locator=
+  statistic-sample-rate=1000
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  writable-working-dir=
+  
+
+[info 2013/12/13 11:35:17.787 EST  <main> tid=0x1] Defaulting license-working-dir to current working directory "/home/gpadmin/workspace/SFBootStrap".
+
+[info 2013/12/13 11:35:17.790 EST  <main> tid=0x1] Acquiring default evaluation license.
+
+[info 2013/12/13 11:35:26.015 EST  <main> tid=0x1] vFabric Licensing Client activation of license required 8225 milliseconds.
+
+[info 2013/12/13 11:35:26.023 EST  <main> tid=0x1] Using the default evaluation license.
+
+[info 2013/12/13 11:35:26.023 EST  <main> tid=0x1] Licensing required 8236 milliseconds.
+
+[info 2013/12/13 11:35:26.075 EST  <main> tid=0x1] GemFire P2P Listener started on  tcp:///172.16.48.164:57867
+
+[info 2013/12/13 11:35:26.220 EST  <main> tid=0x1] Attempting to join distributed system whose membership coordinator is 172.16.6.249(20867)<v0>:6812 using membership ID pivhdsne(10394):35637
+
+[info 2013/12/13 11:36:28.235 EST  <main> tid=0x1] Attempting to join distributed system whose membership coordinator is pivhdsne(8674)<v0>:37338 using membership ID pivhdsne(10394):35637
+
+[info 2013/12/13 11:36:28.394 EST  <main> tid=0x1] Membership: lead member is now pivhdsne(8674)<v0>:37338
+
+[info 2013/12/13 11:36:28.402 EST  <main> tid=0x1] Entered into membership in group GF7 with ID pivhdsne(10394)<v3>:35637.
+
+[info 2013/12/13 11:36:28.403 EST  <main> tid=0x1] Starting DistributionManager pivhdsne(10394)<v3>:35637. 
+
+[info 2013/12/13 11:36:28.406 EST  <main> tid=0x1] Initial (membershipManager) view =  [pivhdsne(8674):37338{lead}, pivhdsne(10394)<v3>:35637]
+
+[info 2013/12/13 11:36:28.407 EST  <main> tid=0x1] Admitting member <pivhdsne(8674):37338>. Now there are 1 non-admin member(s).
+
+[info 2013/12/13 11:36:28.407 EST  <main> tid=0x1] Admitting member <pivhdsne(10394)<v3>:35637>. Now there are 2 non-admin member(s).
+
+[info 2013/12/13 11:36:28.426 EST  <UDP ucast receiver> tid=0x1c] The negotiated cache time from pivhdsne(8674):37338 is 2013/12/13 11:36:28.420 EST.  Delta from the system clock is -5 milliseconds.
+
+[info 2013/12/13 11:36:28.428 EST  <main> tid=0x1] DistributionManager pivhdsne(10394)<v3>:35637 started on pivhdsne.localdomain[56788]. There were 1 other DMs. others: [pivhdsne(8674):37338]  
+
+[info 2013/12/13 11:36:28.462 EST  <Thread-6 StatSampler> tid=0x26] Archiving statistics to "pivhdsne-stst.sfs".
+
+[info 2013/12/13 11:36:28.630 EST  <main> tid=0x1] Initializing region _monitoringRegion_pivhdsne(10394)<v3>35637
+
+[info 2013/12/13 11:36:28.691 EST  <main> tid=0x1] Initializing region PdxTypes
+
+[info 2013/12/13 11:36:28.716 EST  <main> tid=0x1] Region PdxTypes requesting initial image from pivhdsne(8674):37338
+
+[info 2013/12/13 11:36:28.720 EST  <main> tid=0x1] PdxTypes is done getting image from pivhdsne(8674):37338
+
+[info 2013/12/13 11:36:28.725 EST  <main> tid=0x1] GemFire Cache successfully created.
+
+[info 2013/12/13 11:36:28.737 EST  <main> tid=0x1] SqlfHeapThreshold: Query Cancellation Thread Started with query cancellation interval 100ms
+
+[config 2013/12/13 11:36:28.748 EST  <main> tid=0x1] GemFire Cache successfully booted with 
+  --- file properties ---
+  --- EMPTY ---
+  --- boot connection properties ---
+   enable-stats="true"
+   locators="pivhdsne[56788]"
+   mcast-port="0"
+   sqlfire.access="memstore"
+   sqlfire.authentication.required="false"
+   sqlfire.database-object="com.vmware.sqlfire.internal.engine.db.FabricDatabase@57a3eab6"
+   sqlfire.engineType="2"
+   sqlfire.serviceLocale="en_US"
+   sqlfire.serviceProtocol="com.vmware.sqlfire.internal.database.Database"
+   statistic-archive-file="pivhdsne-stst.sfs"
+   statistic-sampling-enabled="true"
+  --- end --
+  
+
+[config 2013/12/13 11:36:28.751 EST  <main> tid=0x1] This JVM is setup with SQLFire datastore role.
+
+[info 2013/12/13 11:36:28.783 EST  <main> tid=0x1] Locked disk store SQLF-DEFAULT-DISKSTORE for exclusive access in directory: /home/gpadmin/workspace/SFBootStrap/.
+
+[info 2013/12/13 11:36:28.803 EST  <main> tid=0x1] Created disk store SQLF-DEFAULT-DISKSTORE with unique id 2d88de6d-d1a5-409b-93e2-bc4dac67b20e
+
+[info 2013/12/13 11:36:28.808 EST  <main> tid=0x1] recovery region initialization took 2 ms
+
+[info 2013/12/13 11:36:33.892 EST  <main> tid=0x1] SqlfHeapThreshold: Stopping Query Cancellation Thread
+
+[info 2013/12/13 11:36:33.892 EST  <sqlfire.QueryCanceller> tid=0x34] SqlfHeapThreshold: Processing CRITICAL_UP event
+
+[info 2013/12/13 11:36:33.892 EST  <sqlfire.QueryCanceller> tid=0x34] SqlfHeapThreshold: Query Cancellation Thread Stopped 
+
+[info 2013/12/13 11:36:33.894 EST  <main> tid=0x1] Disconnecting GemFire distributed system and stopping GemFireStore
+
+[info 2013/12/13 11:36:33.894 EST SQLF:TraceFabricServiceBoot <main> tid=0x1] GemFireStore service stopped successfully, notifying status ... 
+java.sql.SQLException(XJ040): Failed to start database 'sqlfire', see the cause for details.
+	at com.vmware.sqlfire.internal.impl.jdbc.SQLExceptionFactory40.getSQLException(SQLExceptionFactory40.java:103)
+	at com.vmware.sqlfire.internal.impl.jdbc.Util.newEmbedSQLException(Util.java:91)
+	at com.vmware.sqlfire.internal.impl.jdbc.Util.newEmbedSQLException(Util.java:117)
+	at com.vmware.sqlfire.internal.impl.jdbc.Util.generateCsSQLException(Util.java:226)
+	at com.vmware.sqlfire.internal.impl.jdbc.EmbedConnection.bootDatabase(EmbedConnection.java:3164)
+	at com.vmware.sqlfire.internal.impl.jdbc.EmbedConnection.<init>(EmbedConnection.java:412)
+	at com.vmware.sqlfire.internal.impl.jdbc.EmbedConnection30.<init>(EmbedConnection30.java:75)
+	at com.vmware.sqlfire.internal.impl.jdbc.EmbedConnection40.<init>(EmbedConnection40.java:56)
+	at com.vmware.sqlfire.internal.jdbc.Driver40.getNewEmbedConnection(Driver40.java:71)
+	at com.vmware.sqlfire.internal.jdbc.InternalDriver.connect(InternalDriver.java:307)
+	at com.vmware.sqlfire.internal.jdbc.InternalDriver.connect(InternalDriver.java:180)
+	at com.vmware.sqlfire.internal.jdbc.AutoloadedDriver.connect(AutoloadedDriver.java:122)
+	at com.vmware.sqlfire.internal.engine.fabricservice.FabricServiceImpl.startImpl(FabricServiceImpl.java:224)
+	at com.vmware.sqlfire.internal.engine.fabricservice.FabricServerImpl.start(FabricServerImpl.java:39)
+	at com.vmware.sqlfire.internal.engine.fabricservice.FabricServerImpl.start(FabricServerImpl.java:28)
+	at SFBootstrapper.createServer(SFBootstrapper.java:59)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at asg.cliche.ShellCommand.invoke(ShellCommand.java:69)
+	at asg.cliche.Shell.processCommand(Shell.java:294)
+	at asg.cliche.Shell.processLine(Shell.java:276)
+	at asg.cliche.Shell.commandLoop(Shell.java:231)
+	at SFBootstrapper.main(SFBootstrapper.java:554)
+============= begin nested exception, level (1) ===========
+com.gemstone.gemfire.cache.DiskAccessException: For DiskStore: SQLF-DD-DISKSTORE: Could not lock "./datadictionary/DRLK_IFSQLF-DD-DISKSTORE.lk". Other JVMs might have created diskstore with same name using the same directory., caused by java.io.IOException: The file "./datadictionary/DRLK_IFSQLF-DD-DISKSTORE.lk" is being used by another process.
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.createLockFile(DiskStoreImpl.java:2006)
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.loadFiles(DiskStoreImpl.java:2135)
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.<init>(DiskStoreImpl.java:424)
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.<init>(DiskStoreImpl.java:338)
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.<init>(DiskStoreImpl.java:333)
+	at com.gemstone.gemfire.internal.cache.DiskStoreFactoryImpl.create(DiskStoreFactoryImpl.java:127)
+	at com.vmware.sqlfire.internal.engine.ddl.SqlfDDLRegion.createInstance(SqlfDDLRegion.java:132)
+	at com.vmware.sqlfire.internal.engine.ddl.SqlfDDLRegionQueue.<init>(SqlfDDLRegionQueue.java:111)
+	at com.vmware.sqlfire.internal.engine.store.GemFireStore.bootRegions(GemFireStore.java:1372)
+	at com.vmware.sqlfire.internal.engine.store.GemFireStore.boot(GemFireStore.java:1103)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.boot(BaseMonitor.java:2219)
+	at com.vmware.sqlfire.internal.impl.services.monitor.TopService.bootModule(TopService.java:295)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.startModule(BaseMonitor.java:694)
+	at com.vmware.sqlfire.internal.impl.services.monitor.FileMonitor.startModule(FileMonitor.java:46)
+	at com.vmware.sqlfire.internal.iapi.services.monitor.Monitor.bootServiceModule(Monitor.java:473)
+	at com.vmware.sqlfire.internal.engine.db.FabricDatabase.bootStore(FabricDatabase.java:2017)
+	at com.vmware.sqlfire.internal.engine.db.FabricDatabase.boot(FabricDatabase.java:337)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.boot(BaseMonitor.java:2219)
+	at com.vmware.sqlfire.internal.impl.services.monitor.TopService.bootModule(TopService.java:295)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.bootService(BaseMonitor.java:2017)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.startProviderService(BaseMonitor.java:1880)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.findProviderAndStartService(BaseMonitor.java:1760)
+	at com.vmware.sqlfire.internal.impl.services.monitor.BaseMonitor.startPersistentService(BaseMonitor.java:1170)
+	at com.vmware.sqlfire.internal.iapi.services.monitor.Monitor.startPersistentService(Monitor.java:596)
+	at com.vmware.sqlfire.internal.impl.jdbc.EmbedConnection.bootDatabase(EmbedConnection.java:3122)
+	... 20 more
+============= end nested exception, level (1) ===========
+============= begin nested exception, level (2) ===========
+java.io.IOException: The file "./datadictionary/DRLK_IFSQLF-DD-DISKSTORE.lk" is being used by another process.
+	at com.gemstone.gemfire.internal.cache.DiskStoreImpl.createLockFile(DiskStoreImpl.java:1993)
+	... 44 more
+============= end nested exception, level (2) ===========
+
+[info 2013/12/13 11:37:04.248 EST  <Distributed system shutdown hook> tid=0x8] VM is exiting - shutting down distributed system
+
+[info 2013/12/13 11:37:04.322 EST  <Distributed system shutdown hook> tid=0x8] GemFireCache[id = 1909686955; isClosing = true; isShutDownAll = false; closingGatewayHubsByShutdownAll = false; created = Fri Dec 13 11:36:28 EST 2013; server = false; copyOnRead = false; lockLease = 120; lockTimeout = 60]: Now closing.
+
+[info 2013/12/13 11:37:04.334 EST  <Distributed system shutdown hook> tid=0x8] Resetting original MemoryPoolMXBean heap threshold bytes 0 on pool PS Old Gen
+
+[info 2013/12/13 11:37:04.511 EST  <Distributed system shutdown hook> tid=0x8] Unlocked disk store SQLF-DEFAULT-DISKSTORE
+
+[info 2013/12/13 11:37:04.594 EST  <Distributed system shutdown hook> tid=0x8] Shutting down DistributionManager pivhdsne(10394)<v3>:35637. 
+
+[info 2013/12/13 11:37:04.786 EST  <Distributed system shutdown hook> tid=0x8] Now closing distribution for pivhdsne(10394)<v3>:35637
+
+[info 2013/12/13 11:37:05.119 EST  <Distributed system shutdown hook> tid=0x8] DistributionManager stopped in 525ms.
+
+[info 2013/12/13 11:37:05.119 EST  <Distributed system shutdown hook> tid=0x8] Marking DistributionManager pivhdsne(10394)<v3>:35637 as closed.

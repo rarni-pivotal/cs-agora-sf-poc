@@ -1,0 +1,213 @@
+
+[info 2014/01/10 09:09:58.868 EST  <main> tid=0x1] 
+  ---------------------------------------------------------------------------
+  
+    Copyright (C) 1997-2013 VMware, Inc. All rights reserved. This product is
+    protected by U.S. and international copyright and intellectual property
+    laws. VMware products are covered by one or more patents listed at
+    http://www.vmware.com/go/patents.  VMware is a registered trademark or
+    trademark of VMware, Inc. in the United States and/or other jurisdictions.
+    All other marks and names mentioned herein may be trademarks of their
+    respective companies.
+  
+  ---------------------------------------------------------------------------
+  Java version:   1.1.1 build 42624 08/05/2013 10:14:33 PDT javac 1.6.0_26
+  Native version: native code unavailable
+  Source revision: 42624
+  Source repository: gemfire/branches/sqlfire110X_maint
+  Running on: usxxmartef3m1.corp.emc.com/192.168.1.6, 8 cpu(s), x86_64 Mac OS X 10.8.5
+  Process ID: 53757
+  User: martef3
+  Current dir: /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap
+  Home dir: /Users/martef3
+  Class Path:
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/bin
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/antlr.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/asg.cliche-110413.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/commons-cli.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/commons-logging.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/commons-modeler-2.0.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/jline.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/jna.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/log4j.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/mail.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/mx4j-remote.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/mx4j-tools.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/mx4j.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/sqlfire.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/sqlfireclient.jar
+    /Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap/lib/sqlfiretools.jar
+  Library Path:
+    .
+    /Library/Java/Extensions
+    /System/Library/Java/Extensions
+    /usr/lib/java
+  System Properties:
+      awt.nativeDoubleBuffering = true
+      awt.toolkit = apple.awt.CToolkit
+      file.encoding = MacRoman
+      file.encoding.pkg = sun.io
+      file.separator = /
+      ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      gemfire.append-log = true
+      gopherProxySet = false
+      http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      java.awt.graphicsenv = apple.awt.CGraphicsEnvironment
+      java.awt.printerjob = apple.awt.CPrinterJob
+      java.class.version = 50.0
+      java.endorsed.dirs = /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed
+      java.ext.dirs = /Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext
+      java.home = /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+      java.io.tmpdir = /var/folders/hg/04r9bwnn109_lz6czvth5yw01w0l15/T/
+      java.runtime.name = Java(TM) SE Runtime Environment
+      java.runtime.version = 1.6.0_51-b11-457-11M4509
+      java.specification.name = Java Platform API Specification
+      java.specification.vendor = Sun Microsystems Inc.
+      java.specification.version = 1.6
+      java.vendor = Apple Inc.
+      java.vendor.url = http://www.apple.com/
+      java.vendor.url.bug = http://bugreport.apple.com/
+      java.version = 1.6.0_51
+      java.vm.info = mixed mode
+      java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+      java.vm.specification.name = Java Virtual Machine Specification
+      java.vm.specification.vendor = Sun Microsystems Inc.
+      java.vm.specification.version = 1.0
+      java.vm.vendor = Apple Inc.
+      java.vm.version = 20.51-b01-457
+      line.separator = 
+  
+      mrj.build = 11M4509
+      mrj.version = 1070.1.6.0_51-457
+      os.version = 10.8.5
+      p2p.useSSL = false
+      path.separator = :
+      socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      sqlfire.log-file = sqlfire-interface.log
+      sun.arch.data.model = 64
+      sun.boot.class.path = /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar
+      sun.boot.library.path = /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries
+      sun.cpu.endian = little
+      sun.cpu.isalist = 
+      sun.io.unicode.encoding = UnicodeLittle
+      sun.java.command = SFBootstrapper
+      sun.java.launcher = SUN_STANDARD
+      sun.jnu.encoding = MacRoman
+      sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+      sun.nio.ch.bugLevel = 
+      sun.os.patch.level = unknown
+      user.country = US
+      user.language = en
+      user.timezone = America/New_York
+  ---------------------------------------------------------------------------
+  
+
+[config 2014/01/10 09:09:58.882 EST  <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with api ###
+  locators=192.168.27.137[56788]
+  log-file=sqlfire-interface.log
+  mcast-port=0
+  statistic-archive-file=pivhdsne-stst.sfs
+  statistic-sampling-enabled=true
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cache-xml-file=cache.xml
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=/Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  groups=
+  jmx-manager=false
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-hostname-for-clients=
+  jmx-manager-http-port=8080
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=10000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-port=0
+  memcached-protocol=ASCII
+  name=
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-locator=
+  statistic-sample-rate=1000
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  writable-working-dir=
+  
+
+[info 2014/01/10 09:09:58.886 EST  <main> tid=0x1] Defaulting license-working-dir to current working directory "/Users/martef3/Documents/Pivotal/dev/sts_workspace/SFBootStrap".
+
+[info 2014/01/10 09:09:58.889 EST  <main> tid=0x1] Acquiring default evaluation license.
+
+[info 2014/01/10 09:10:00.287 EST  <main> tid=0x1] vFabric Licensing Client activation of license required 1398 milliseconds.
+
+[info 2014/01/10 09:10:00.332 EST  <main> tid=0x1] Using the default evaluation license.
+
+[info 2014/01/10 09:10:00.332 EST  <main> tid=0x1] Licensing required 1446 milliseconds.
+
+[info 2014/01/10 09:10:00.388 EST  <main> tid=0x1] GemFire P2P Listener started on  tcp:///192.168.1.6:62081
+
+[info 2014/01/10 09:10:00.520 EST  <main> tid=0x1] Attempting to join distributed system whose membership coordinator is 192.168.27.137(3205)<v0>:57873 using membership ID usxxmartef3m1(53757):39237
+
+[TRACE 2014/01/10 09:11:05.704 EST SQLF:warning:SignalHandler <SIGTERM handler> tid=0x2c] received explicit OS signal SIGTERM
+java.lang.Throwable
+	at com.vmware.sqlfire.internal.engine.SigThreadDumpHandler.handle(SigThreadDumpHandler.java:71)
+	at sun.misc.Signal$1.run(Signal.java:195)
+	at java.lang.Thread.run(Thread.java:680)
+

@@ -1,0 +1,829 @@
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.Random;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+public class CSDataUpdater implements Runnable{
+
+	int start=0;
+	int numRecords = 100000;
+	String type = null;
+	int runCount = 1;
+	
+	Random rand ;
+	java.util.Date date;			
+	java.sql.Timestamp myDate;
+	
+	int multiplier = 1;	
+	Connection conn;
+	String updateSQLFA, updateSQLFD, updateSQLO; 
+	PreparedStatement psFA, psFD, psO;
+	String prefix; 
+	//static Logger logme;
+	
+	public CSDataUpdater(int init, int nRecords, int myMultiplier, String myPrefix, String connURL) throws SQLException {
+		runCount = init;
+		date = new java.util.Date();			
+		myDate = new java.sql.Timestamp(date.getTime());
+		prefix = myPrefix;
+		//logme = Logger.getLogger(this.getClass());
+		//PropertyConfigurator.configure("log4j.properties");
+		
+		conn = DriverManager.getConnection(connURL, null);
+		//conn.setAutoCommit(true);
+		start = ((Integer)init).intValue();
+		numRecords = ((Integer)nRecords).intValue();
+		multiplier = myMultiplier;
+		
+		updateSQLFA="update fillallocations set ACTREPORTINFO1=?, ALLOCQUANTITY=?, AUTOBUSTALLOCATION=?, BACKCANCELCORRECT=?, BACKOFFICEFILLID=?, BOOKINGTAG=?, BROKERFEE=?, CHANGEDTIMESTAMP=?, CUMULATIVEQUANTITY=?, CUSTOMERACCOUNT=?, DESTINATIONREGIONCODE=?, DESTINATIONSERVICENAME=?, DESTINATIONSERVICESEQNUM=?, DESTINATIONUSERCC=?, EXECUTIONID=?, EXECUTIONUSER=?, FOBOFILLTRADEID=?, FXFORWARDPOINTS=?, FILLBOOKINGSTATE=?, FILLSTATE=?, GIVEUP=?, INSTANCEID=?, ORDERID=?, PARENTFILLID=?, PARENTFILLORDERID=?, REASON=?, REASONCODE=?, SALESCREDITACCOUNT=?, SOURCEREGIONCODE=?, SOURCESERVICENAME=?, SOURCEUSERCC=?, TRANSACTIONNAME=?, TRANSACTIONNUMBER=?, TRANSACTIONTIMESTAMP=?, UNALLOCQUANTITY=?, UNIQUECLIENTFILLID=? where FillID=?";
+		psFA = conn.prepareStatement(updateSQLFA);
+		
+		updateSQLO = "update orders set ACTREPORTINFO2=?, AESINSTANCEID=?, AESMVDSEQUENCESTATUS=?, AESOMINSTANCEID=?, AESOMORDERID=?, AESOMPARENTORDERID=?, AESOMROUTINGDEST=?, AESORDERGENERATORID=?, AESORDERINTERNALSTATE=?, AESPAUSECODE=?, AESROUTINGRESTRICTIONS=?, ACCOUNT=?, ACCOUNTTYPE=?, ACCRUEDINTEREST=?, ADDITIONALFEE=?, ADJUSTTKTPRICE=?, ALLORNONE=?, ALLOCQUANTITY=?, ANONYMOUS=?, ARRIVALPRICE=?, ASOFTIMESTAMP=?, AUTOALLOCATE=?, AUTOBOOKEXTERNALACCOUNT=?, AUTOBOOKINTERNALACCOUNT=?, AUTOCONFIRMATION=?, AUTOTRADE=?, AVERAGEFXRATE=?, AVERAGEPRICE=?, AVGFXFORWARDPOINTS=?, BACKCANCELCORRECT=?, BACKOFFICEORDERID=?, BACKOFFICESYSTEM=?, BACKOFFICETACTIC=?, BARGAINTERMCODE=?, BASECURRENCY=?, BASKETLEGID=?, BASKETTYPE=?, BLOCKTRADEBROKERKEY=?, BLOCKTRADEREPORTCODE=?, BOOKINGENTITY=?, BOOKINGSECURITYID=?, BOOKINGSECURITYIDSOURCE=?, BRANCHSEQNUMBER=?, BULLETINBOARDSIZE=?, CANCELSTATE=?, CHANGEDTIMESTAMP=?, CHECKEDCASHVALUE=?, CHECKEDCLIENTACCOUNT=?, CHECKEDGROUPID=?, CHECKEDNETSELL=?, CLEARINGINSTRUCTIONS=?, CLIENTID=?, CLIENTLOCATION=?, CLIENTORDERID=?, CLIENTPORTFOLIOID=?, CLIENTSECURITYID=?, CLIENTSECURITYIDSOURCE=?, COMMISSION=?, COMMISSIONTYPE=?, COMPRESSPARAMETER=?, COMPRESSTIMEOUT=?, CONNECTIONID=?, CONTROLLINGUSER=?, COUPON=?, CROSSINSTRUCTIONS=?, CROSSINTERNALPRICE=?, CUMULATIVEQUANTITY=?, CURRENTMARKER=?, CUSTOMERACCOUNT=?, DAYCUMULATIVEQUANTITY=?, DEFAULTDESTINATION=?, DELIVERYTYPE=?, DESTINATIONACCOUNTTYPE=?, DESTINATIONDESK=?, DESTINATIONREGIONCODE=?, DESTINATIONSERVICEMESSAGE=?, DESTINATIONSERVICENAME=?, DESTINATIONSERVICEORDERID=?, DESTINATIONSERVICESEQNUM=?, DESTINATIONUSER=?, DESTINATIONUSERCC=?, DISCRETION=?, DIVIDENDADJUSTMENT=?, EXTRIGGERACTIVATIONSTATUS=?, EXCHANGE=?, EXCHANGERATE=?, EXCHANGETAG=?, EXCHANGETRADEDATE=?, EXECUTIONALGO=?, EXECUTIONCAPACITY=?, EXECUTIONMODE=?, EXECUTIONPRICE=?, EXECUTIONTRIGGER=?, EXTERNALCLIENTORDERID=?, FIXSESSIONID=?, FOBOORDERTRADEID=?, FXAVERAGEPRICEALLIN=?, FXCCY2=?, FXCUMULATIVEQUANTITYBASECCY=?, FXCUMULATIVEQUANTITYLOCALCCY=?, FXFWSWFARLEGSETTLEMENT=?, FXFWSWNEARLEGSETTLEMENT=?, FXFWSWQUOTEID=?, FXFWDBOOKINGSTATUS=?, FXFWDINSTRUCTIONS=?, FXLOCALCCYRATE=?, FXQUANTITYLOCALCCY=?, FXRATE=?, GIVEUP=?, IOI=?, INSTANCEID=?, INTERMARKETSWEEP=?, INTERNALCROSSELIGIBLE=?, INTERNALIOI=?, INTERNALIOIPRICE=?, INTERNALIOIQUANTITY=?, INVESTORID=?, JITNEYBROKERCODE=?, LASTUSER=?, LATESTFXFORWARDPOINTS=?, LEAVESQUANTITY=?, LOCALTAXES=?, LOCATEBROKERID=?, LOCATEPROVIDED=?, LOCATEDSHARES=?, MLID=?, MLLEGNUMBER=?, MLPARENTID=?, MLPARENTLEGNUMBER=?, MLPARENTTOTALLEGS=?, MLTOTALLEGS=?, MARKETHELD=?, MARKUPPRICE=?, MATURITYDATE=?, MAXSHOW=?, MEMO=?, MIFIDROUTING=?, MIFIDSHOWLMT=?, MIFIDTKTQUANTITY=?, MINACCEPTABLEQUANTITY=?, MINCOMMISSION=?, NYSERULE92TERMS=?, NOTHINGDONEFLAG=?, OPENCLOSEINDICATOR=?, ORDERBOOKINGSTATE=?, ORDERENTRYTYPE=?, ORDERORIGINATORREGIONCODE=?, ORDERRECEIPTTIMESTAMP=?, ORDERTIMESTAMP=?, PADJUSTTKTPRICE=?, PCLIENTORDERID=?, PEXECUTIONALGO=?, PEXECUTIONMODE=?, PEXECUTIONTRIGGER=?, PEXTERNALCLIENTORDERID=?, PFXQUANTITYLOCALCCY=?, PMARKETHELD=?, PMAXSHOW=?, PMEMO=?, PPRICEINSTRUCTION=?, PQUANTITY=?, PQUOTESIZE=?, PSSEXEMPTCODE=?, PSIDE=?, PTMLEVY=?, PTIMEINFORCE=?, PAIRSMAXLEGQUANTITY=?, BID=?, ASK=?, PAIRSSTOPLOSSAMOUNT=?, PARENTORDERID=?, PRECISION=?, PRICEINSTRUCTION=?, PRIMARYEXCHANGE=?, PUTORCALL=?, QUANTITY=?, QUERYID=?, QUOTESIZE=?, RECONCILED=?, RECYCLEDATE=?, REFERENCEGROUPID=?, REFERENCEORDERID=?, REGNMSEXEMPTCODE=?, REGNMSOPTOUTISO=?, REJECTEDSHARES=?, REPNUMBER=?, ROLLUP=?, ROOTORDERID=?, ROUTEFLAG=?, ROUTETEXT=?, ROUTETYPE=?, RULETYPE=?, SSEXEMPTCODE=?, SALESCREDIT=?, SALESCREDITACCOUNT=?, SCHEDULECODE=?, SECURITYID=?, SECURITYIDASENTERED=?, SECURITYIDSOURCE=?, SECURITYROOTID=?, SECURITYROOTIDSOURCE=?, SECURITYSUBTYPE=?, SECURITYTYPE=?, SERVERID=?, SETTLEMENTCURRENCY=?, SETTLEMENTCURRENCYPRICE=?, SETTLEMENTINSTRUCTION=?, SIDE=?, SOFTCOMMISSION=?, SOLICITATION=?, SOURCEDESK=?, SOURCEREGIONCODE=?, SOURCESERVICENAME=?, SOURCESERVICEORDERID=?, SOURCESERVICEUSER=?, SOURCEUSER=?, SOURCEUSERCC=?, STAMPTAX=?, STATE=?, STLCURAVERAGEPRICE=?, STOPPRICE=?, STOPPEDTIME=?, STRATEGYACCOUNT=?, STRATEGYCROSSACCOUNT=?, STRIKEPRICE=?, SWITCHACCOUNT=?, TSXBYPASS=?, TSXREGID=?, TACTIC=?, TAXTYPE=?, TIMEINFORCE=?, TOPTRADE=?, TRANCHE=?, TRANSACTIONNAME=?, TRANSACTIONNUMBER=?, TRANSACTIONTIMESTAMP=?, UNDERLYINGSECURITYID=?, UNIQUECLIENTORDERID=?, WSSAREACODE=?, WAVEID=?, WAVEMARK=?, WGHTEDSUMAVERAGEFXRATE=?, WGHTEDSUMAVERAGEPRICE=?, WGHTEDSUMSTLCURAVERAGEPRICE=?, RISK=?, RANK=?, ADVISORYBROKER=?, GLOBALREFERENCEGROUPID=?, ORDERTYPETAG=?, EXTERNALCLIENTBOOKINGTAG=?, ORIGINALLCDTAG=?, UNSOLICITEDOUT=? where OrderID=?";
+		psO = conn.prepareStatement(updateSQLO);
+		
+		updateSQLFD = "update filldetails set ACTREPORT=?, ASOFTIMESTAMP=?, BOOKSTREETSIDE=?, BOOKINGENTITY=?, BOOKINGORIGINALFILLID=?, CLEARINGBROKER=?, COMPRESSED=?, COMPRESSEDFILLID=?, CONTRABROKER=?, COUNTERPARTYID=?, CROSSTRADINGACCOUNT=?, EXCHANGE=?, EXCHANGETAG=?, EXCHANGETRADEDATE=?, EXECUTINGBROKER=?, EXECUTIONCAPACITY=?, EXECUTIONDESK=?, EXECUTIONEXCHANGEID=?, EXECUTIONEXCHANGETIMESTAMP=?, EXECUTIONORIGINUSER=?, EXECUTIONPRICE=?, EXECQUANTITY=?, FXRATE=?, FILLTIMESTAMP=?, INSTANCEID=?, LATEFILL=?, LATEFLAG=?, LIQUIDITYINDICATOR=?, MARKUPPRICE=?, NBBOASK=?, NBBOBID=?, OATSREPORT=?, ORDERORIGINATORREGIONCODE=?, ORIGINALEXECUTIONID=?, PTMLEVY=?, RECYCLEDATE=?, REGNMSEXEMPTCODE=?, ROOTFILLID=?, SSEXEMPTCODE=?, SECURITYID=?, SERVERID=?, SETTLEMENTCURRENCYPRICE=?, SIDE=?, STAMPTAX=?, TAGTYPE=? where ExecutionID=?";
+		psFD = conn.prepareStatement(updateSQLFD);
+	}
+	
+	
+
+	@Override
+	public void run() {
+		prepPSs();
+		try {
+			updateData();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+public void prepPSs() {
+		
+		prepInsertOrder();
+		prepInsertFD();
+		prepInsertFA();
+		
+			
+	}
+		
+
+public void prepInsertOrder() {
+	
+	try {
+		//ACTREPORTINFO2 VARCHAR
+		//psO.setString(1, "U");
+		//AESINSTANCEID INTEGER
+		psO.setInt(2, 2);
+		//AESMVDSEQUENCESTATUS INTEGER
+		psO.setInt(3, 2);
+		//AESOMINSTANCEID INTEGER
+		psO.setInt(4, 2);
+		//AESOMORDERID INTEGER
+		psO.setInt(5, 2);
+		//AESOMPARENTORDERID VARCHAR
+		psO.setString(6, "U");
+		//AESOMROUTINGDEST VARCHAR
+		psO.setString(7, "U");
+		//AESORDERGENERATORID VARCHAR
+		psO.setString(8, "U");
+		//AESORDERINTERNALSTATE VARCHAR
+		psO.setString(9, "U");
+		//AESPAUSECODE INTEGER
+		psO.setInt(10, 2);
+		//AESROUTINGRESTRICTIONS INTEGER
+		psO.setInt(11, 2);
+		//ACCOUNT VARCHAR
+		psO.setString(12, "U");
+		//ACCOUNTTYPE VARCHAR
+		psO.setString(13, "U");
+		//ACCRUEDINTEREST NUMERIC
+		psO.setBigDecimal(14, new BigDecimal(11.1));
+		//ADDITIONALFEE NUMERIC
+		psO.setBigDecimal(15, new BigDecimal(11.1));
+		//ADJUSTTKTPRICE INTEGER
+		psO.setInt(16, 2);
+		//ALLORNONE INTEGER
+		psO.setInt(17, 2);
+		//ALLOCQUANTITY NUMERIC
+		psO.setBigDecimal(18, new BigDecimal(11.1));
+		//ANONYMOUS INTEGER
+		psO.setInt(19, 2);
+		//ARRIVALPRICE NUMERIC
+		psO.setBigDecimal(20, new BigDecimal(11.1));
+		//ASOFTIMESTAMP DATE/TIMESTAMP
+		psO.setTimestamp(21, myDate);
+		//AUTOALLOCATE INTEGER
+		psO.setInt(22, 2);
+		//AUTOBOOKEXTERNALACCOUNT VARCHAR
+		psO.setString(23, "U");
+		//AUTOBOOKINTERNALACCOUNT VARCHAR
+		psO.setString(24, "U");
+		//AUTOCONFIRMATION INTEGER
+		psO.setInt(25, 2);
+		//AUTOTRADE VARCHAR
+		psO.setString(26, "U");
+		//AVERAGEFXRATE NUMERIC
+		psO.setBigDecimal(27, new BigDecimal(11.1));
+		//AVERAGEPRICE NUMERIC
+		psO.setBigDecimal(28, new BigDecimal(11.1));
+		//AVGFXFORWARDPOINTS NUMERIC
+		psO.setBigDecimal(29, new BigDecimal(11.1));
+		//BACKCANCELCORRECT VARCHAR
+		psO.setString(30, "U");
+		//BACKOFFICEORDERID INTEGER
+		psO.setInt(31, 2);
+		//BACKOFFICESYSTEM VARCHAR
+		psO.setString(32, "U");
+		//BACKOFFICETACTIC VARCHAR
+		psO.setString(33, "U");
+		//BARGAINTERMCODE VARCHAR
+		psO.setString(34, "U");
+		//BASECURRENCY VARCHAR
+		psO.setString(35, "U");
+		//BASKETLEGID VARCHAR
+		psO.setString(36, "U");
+		//BASKETTYPE VARCHAR
+		psO.setString(37, "U");
+		//BLOCKTRADEBROKERKEY VARCHAR
+		psO.setString(38, "U");
+		//BLOCKTRADEREPORTCODE INTEGER
+		psO.setInt(39, 2);
+		//BOOKINGENTITY VARCHAR
+		psO.setString(40, "U");
+		//BOOKINGSECURITYID VARCHAR
+		psO.setString(41, "U");
+		//BOOKINGSECURITYIDSOURCE VARCHAR
+		psO.setString(42, "U");
+		//BRANCHSEQNUMBER VARCHAR
+		psO.setString(43, "U");
+		//BULLETINBOARDSIZE INTEGER
+		psO.setInt(44, 2);
+		//CANCELSTATE VARCHAR
+		psO.setString(45, "U");
+		//CHANGEDTIMESTAMP DATE/TIMESTAMP
+		psO.setTimestamp(46, myDate);
+		//CHECKEDCASHVALUE NUMERIC
+		psO.setBigDecimal(47, new BigDecimal(11.1));
+		//CHECKEDCLIENTACCOUNT VARCHAR
+		psO.setString(48, "U");
+		//CHECKEDGROUPID VARCHAR
+		psO.setString(49, "U");
+		//CHECKEDNETSELL NUMERIC
+		psO.setBigDecimal(50, new BigDecimal(11.1));
+		//CLEARINGINSTRUCTIONS VARCHAR
+		psO.setString(51, "U");
+		//CLIENTID VARCHAR
+		psO.setString(52, "U");
+		//CLIENTLOCATION VARCHAR
+		psO.setString(53, "U");
+		//CLIENTORDERID VARCHAR
+		psO.setString(54, "U");
+		//CLIENTPORTFOLIOID VARCHAR
+		psO.setString(55, "U");
+		//CLIENTSECURITYID VARCHAR
+		psO.setString(56, "U");
+		//CLIENTSECURITYIDSOURCE VARCHAR
+		psO.setString(57, "U");
+		//COMMISSION VARCHAR
+		psO.setString(58, "U");
+		//COMMISSIONTYPE VARCHAR
+		psO.setString(59, "U");
+		//COMPRESSPARAMETER INTEGER
+		psO.setInt(60, 2);
+		//COMPRESSTIMEOUT INTEGER
+		psO.setInt(61, 2);
+		//CONNECTIONID VARCHAR
+		psO.setString(62, "U");
+		//CONTROLLINGUSER VARCHAR
+		psO.setString(63, "U");
+		//COUPON NUMERIC
+		psO.setBigDecimal(64, new BigDecimal(11.1));
+		//CROSSINSTRUCTIONS INTEGER
+		psO.setInt(65, 2);
+		//CROSSINTERNALPRICE NUMERIC
+		psO.setBigDecimal(66, new BigDecimal(11.1));
+		//CUMULATIVEQUANTITY NUMERIC
+		psO.setBigDecimal(67, new BigDecimal(11.1));
+		//CURRENTMARKER INTEGER
+		psO.setInt(68, 2);
+		//CUSTOMERACCOUNT VARCHAR
+		psO.setString(69, "U");
+		//DAYCUMULATIVEQUANTITY NUMERIC
+		psO.setBigDecimal(70, new BigDecimal(11.1));
+		//DEFAULTDESTINATION VARCHAR
+		psO.setString(71, "U");
+		//DELIVERYTYPE VARCHAR
+		psO.setString(72, "U");
+		//DESTINATIONACCOUNTTYPE VARCHAR
+		psO.setString(73, "U");
+		//DESTINATIONDESK VARCHAR
+		psO.setString(74, "U");
+		//DESTINATIONREGIONCODE VARCHAR
+		psO.setString(75, "U");
+		//DESTINATIONSERVICEMESSAGE VARCHAR
+		psO.setString(76, "U");
+		//DESTINATIONSERVICENAME VARCHAR
+		psO.setString(77, "U");
+		//DESTINATIONSERVICEORDERID VARCHAR
+		psO.setString(78, "U");
+		//DESTINATIONSERVICESEQNUM INTEGER
+		psO.setInt(79, 2);
+		//DESTINATIONUSER VARCHAR
+		psO.setString(80, "U");
+		//DESTINATIONUSERCC VARCHAR
+		psO.setString(81, "U");
+		//DISCRETION INTEGER
+		psO.setInt(82, 2);
+		//DIVIDENDADJUSTMENT VARCHAR
+		psO.setString(83, "U");
+		//EXTRIGGERACTIVATIONSTATUS INTEGER
+		psO.setInt(84, 2);
+		//EXCHANGE VARCHAR
+		psO.setString(85, "U");
+		//EXCHANGERATE NUMERIC
+		psO.setBigDecimal(86, new BigDecimal(11.1));
+		//EXCHANGETAG VARCHAR
+		psO.setString(87, "U");
+		//EXCHANGETRADEDATE DATE/TIMESTAMP
+		psO.setTimestamp(88, myDate);
+		//EXECUTIONALGO VARCHAR
+		psO.setString(89, "U");
+		//EXECUTIONCAPACITY VARCHAR
+		psO.setString(90, "U");
+		//EXECUTIONMODE VARCHAR
+		psO.setString(91, "U");
+		//EXECUTIONPRICE NUMERIC
+		psO.setBigDecimal(92, new BigDecimal(11.1));
+		//EXECUTIONTRIGGER VARCHAR
+		psO.setString(93, "U");
+		//EXTERNALCLIENTORDERID VARCHAR
+		psO.setString(94, "U");
+		//FIXSESSIONID VARCHAR
+		psO.setString(95, "U");
+		//FOBOORDERTRADEID VARCHAR
+		psO.setString(96, "U");
+		//FXAVERAGEPRICEALLIN NUMERIC
+		psO.setBigDecimal(97, new BigDecimal(11.1));
+		//FXCCY2 INTEGER
+		psO.setInt(98, 2);
+		//FXCUMULATIVEQUANTITYBASECCY NUMERIC
+		psO.setBigDecimal(99, new BigDecimal(11.1));
+		//FXCUMULATIVEQUANTITYLOCALCCY NUMERIC
+		psO.setBigDecimal(100, new BigDecimal(11.1));
+		//FXFWSWFARLEGSETTLEMENT VARCHAR
+		psO.setString(101, "U");
+		//FXFWSWNEARLEGSETTLEMENT VARCHAR
+		psO.setString(102, "U");
+		//FXFWSWQUOTEID VARCHAR
+		psO.setString(103, "U");
+		//FXFWDBOOKINGSTATUS INTEGER
+		psO.setInt(104, 2);
+		//FXFWDINSTRUCTIONS INTEGER
+		psO.setInt(105, 2);
+		//FXLOCALCCYRATE NUMERIC
+		psO.setBigDecimal(106, new BigDecimal(11.1));
+		//FXQUANTITYLOCALCCY NUMERIC
+		psO.setBigDecimal(107, new BigDecimal(11.1));
+		//FXRATE NUMERIC
+		psO.setBigDecimal(108, new BigDecimal(11.1));
+		//GIVEUP VARCHAR
+		psO.setString(109, "U");
+		//IOI INTEGER
+		psO.setInt(110, 2);
+		//INSTANCEID VARCHAR
+		psO.setString(111, "U");
+		//INTERMARKETSWEEP VARCHAR
+		psO.setString(112, "U");
+		//INTERNALCROSSELIGIBLE VARCHAR
+		psO.setString(113, "U");
+		//INTERNALIOI INTEGER
+		psO.setInt(114, 2);
+		//INTERNALIOIPRICE NUMERIC
+		psO.setBigDecimal(115, new BigDecimal(11.1));
+		//INTERNALIOIQUANTITY INTEGER
+		psO.setInt(116, 2);
+		//INVESTORID VARCHAR
+		psO.setString(117, "U");
+		//JITNEYBROKERCODE VARCHAR
+		psO.setString(118, "U");
+		//LASTUSER VARCHAR
+		psO.setString(119, "U");
+		//LATESTFXFORWARDPOINTS NUMERIC
+		psO.setBigDecimal(120, new BigDecimal(11.1));
+		//LEAVESQUANTITY NUMERIC
+		psO.setBigDecimal(121, new BigDecimal(11.1));
+		//LOCALTAXES NUMERIC
+		psO.setBigDecimal(122, new BigDecimal(11.1));
+		//LOCATEBROKERID VARCHAR
+		psO.setString(123, "U");
+		//LOCATEPROVIDED VARCHAR
+		psO.setString(124, "U");
+		//LOCATEDSHARES NUMERIC
+		psO.setBigDecimal(125, new BigDecimal(11.1));
+		//MLID VARCHAR
+		psO.setString(126, "U");
+		//MLLEGNUMBER INTEGER
+		psO.setInt(127, 2);
+		//MLPARENTID VARCHAR
+		psO.setString(128, "U");
+		//MLPARENTLEGNUMBER INTEGER
+		psO.setInt(129, 2);
+		//MLPARENTTOTALLEGS INTEGER
+		psO.setInt(130, 2);
+		//MLTOTALLEGS INTEGER
+		psO.setInt(131, 2);
+		//MARKETHELD INTEGER
+		psO.setInt(132, 2);
+		//MARKUPPRICE NUMERIC
+		psO.setBigDecimal(133, new BigDecimal(11.1));
+		//MATURITYDATE VARCHAR
+		psO.setString(134, "U");
+		//MAXSHOW NUMERIC
+		psO.setBigDecimal(135, new BigDecimal(11.1));
+		//MEMO VARCHAR
+		psO.setString(136, "U");
+		//MIFIDROUTING VARCHAR
+		psO.setString(137, "U");
+		//MIFIDSHOWLMT INTEGER
+		psO.setInt(138, 2);
+		//MIFIDTKTQUANTITY INTEGER
+		psO.setInt(139, 2);
+		//MINACCEPTABLEQUANTITY NUMERIC
+		psO.setBigDecimal(140, new BigDecimal(11.1));
+		//MINCOMMISSION NUMERIC
+		psO.setBigDecimal(141, new BigDecimal(11.1));
+		//NYSERULE92TERMS VARCHAR
+		psO.setString(142, "U");
+		//NOTHINGDONEFLAG INTEGER
+		psO.setInt(143, 2);
+		//OPENCLOSEINDICATOR VARCHAR
+		psO.setString(144, "U");
+		//ORDERBOOKINGSTATE VARCHAR
+		psO.setString(145, "U");
+		//ORDERENTRYTYPE VARCHAR
+		psO.setString(146, "U");
+		//ORDERORIGINATORREGIONCODE VARCHAR
+		psO.setString(147, "U");
+		//ORDERRECEIPTTIMESTAMP DATE/TIMESTAMP
+		psO.setTimestamp(148, myDate);
+		//ORDERTIMESTAMP DATE/TIMESTAMP
+		psO.setTimestamp(149, myDate);
+		//PADJUSTTKTPRICE INTEGER
+		psO.setInt(150, 2);
+		//PCLIENTORDERID VARCHAR
+		psO.setString(151, "U");
+		//PEXECUTIONALGO VARCHAR
+		psO.setString(152, "U");
+		//PEXECUTIONMODE VARCHAR
+		psO.setString(153, "U");
+		//PEXECUTIONTRIGGER VARCHAR
+		psO.setString(154, "U");
+		//PEXTERNALCLIENTORDERID VARCHAR
+		psO.setString(155, "U");
+		//PFXQUANTITYLOCALCCY NUMERIC
+		psO.setBigDecimal(156, new BigDecimal(11.1));
+		//PMARKETHELD INTEGER
+		psO.setInt(157, 2);
+		//PMAXSHOW NUMERIC
+		psO.setBigDecimal(158, new BigDecimal(11.1));
+		//PMEMO VARCHAR
+		psO.setString(159, "U");
+		//PPRICEINSTRUCTION VARCHAR
+		psO.setString(160, "U");
+		//PQUANTITY NUMERIC
+		psO.setBigDecimal(161, new BigDecimal(11.1));
+		//PQUOTESIZE NUMERIC
+		psO.setBigDecimal(162, new BigDecimal(11.1));
+		//PSSEXEMPTCODE INTEGER
+		psO.setInt(163, 2);
+		//PSIDE VARCHAR
+		psO.setString(164, "U");
+		//PTMLEVY NUMERIC
+		psO.setBigDecimal(165, new BigDecimal(11.1));
+		//PTIMEINFORCE VARCHAR
+		psO.setString(166, "U");
+		//PAIRSMAXLEGQUANTITY NUMERIC
+		psO.setBigDecimal(167, new BigDecimal(11.1));
+		//BID NUMERIC
+		psO.setBigDecimal(168, new BigDecimal(11.1));
+		//ASK NUMERIC
+		psO.setBigDecimal(169, new BigDecimal(11.1));
+		//PAIRSSTOPLOSSAMOUNT NUMERIC
+		psO.setBigDecimal(170, new BigDecimal(11.1));
+		//PARENTORDERID VARCHAR
+		psO.setString(171, "U");
+		//PRECISION INTEGER
+		psO.setInt(172, 2);
+		//PRICEINSTRUCTION VARCHAR
+		psO.setString(173, "U");
+		//PRIMARYEXCHANGE VARCHAR
+		psO.setString(174, "U");
+		//PUTORCALL VARCHAR
+		psO.setString(175, "U");
+		//QUANTITY NUMERIC
+		psO.setBigDecimal(176, new BigDecimal(11.1));
+		//QUERYID INTEGER
+		psO.setInt(177, 2);
+		//QUOTESIZE NUMERIC
+		psO.setBigDecimal(178, new BigDecimal(11.1));
+		//RECONCILED INTEGER
+		psO.setInt(179, 2);
+		//RECYCLEDATE DATE/TIMESTAMP
+		psO.setTimestamp(180, myDate);
+		//REFERENCEGROUPID INTEGER
+		psO.setInt(181, 2);
+		//REFERENCEORDERID INTEGER
+		psO.setInt(182, 2);
+		//REGNMSEXEMPTCODE VARCHAR
+		psO.setString(183, "U");
+		//REGNMSOPTOUTISO VARCHAR
+		psO.setString(184, "U");
+		//REJECTEDSHARES NUMERIC
+		psO.setBigDecimal(185, new BigDecimal(11.1));
+		//REPNUMBER VARCHAR
+		psO.setString(186, "U");
+		//ROLLUP INTEGER
+		psO.setInt(187, 2);
+		//ROOTORDERID VARCHAR
+		psO.setString(188, "U");
+		//ROUTEFLAG INTEGER
+		psO.setInt(189, 2);
+		//ROUTETEXT VARCHAR
+		psO.setString(190, "U");
+		//ROUTETYPE INTEGER
+		psO.setInt(191, 2);
+		//RULETYPE VARCHAR
+		psO.setString(192, "U");
+		//SSEXEMPTCODE INTEGER
+		psO.setInt(193, 2);
+		//SALESCREDIT VARCHAR
+		psO.setString(194, "U");
+		//SALESCREDITACCOUNT VARCHAR
+		psO.setString(195, "U");
+		//SCHEDULECODE VARCHAR
+		psO.setString(196, "U");
+		//SECURITYID VARCHAR
+		psO.setString(197, "U");
+		//SECURITYIDASENTERED VARCHAR
+		psO.setString(198, "U");
+		//SECURITYIDSOURCE VARCHAR
+		psO.setString(199, "U");
+		//SECURITYROOTID VARCHAR
+		psO.setString(200, "U");
+		//SECURITYROOTIDSOURCE VARCHAR
+		psO.setString(201, "U");
+		//SECURITYSUBTYPE VARCHAR
+		psO.setString(202, "U");
+		//SECURITYTYPE VARCHAR
+		psO.setString(203, "U");
+		//SERVERID VARCHAR
+		psO.setString(204, "U");
+		//SETTLEMENTCURRENCY VARCHAR
+		psO.setString(205, "U");
+		//SETTLEMENTCURRENCYPRICE NUMERIC
+		psO.setBigDecimal(206, new BigDecimal(11.1));
+		//SETTLEMENTINSTRUCTION VARCHAR
+		psO.setString(207, "U");
+		//SIDE VARCHAR
+		psO.setString(208, "U");
+		//SOFTCOMMISSION VARCHAR
+		psO.setString(209, "U");
+		//SOLICITATION INTEGER
+		psO.setInt(210, 2);
+		//SOURCEDESK VARCHAR
+		psO.setString(211, "U");
+		//SOURCEREGIONCODE VARCHAR
+		psO.setString(212, "U");
+		//SOURCESERVICENAME VARCHAR
+		psO.setString(213, "U");
+		//SOURCESERVICEORDERID VARCHAR
+		psO.setString(214, "U");
+		//SOURCESERVICEUSER VARCHAR
+		psO.setString(215, "U");
+		//SOURCEUSER VARCHAR
+		psO.setString(216, "U");
+		//SOURCEUSERCC VARCHAR
+		psO.setString(217, "U");
+		//STAMPTAX NUMERIC
+		psO.setBigDecimal(218, new BigDecimal(11.1));
+		//STATE VARCHAR
+		psO.setString(219, "U");
+		//STLCURAVERAGEPRICE NUMERIC
+		psO.setBigDecimal(220, new BigDecimal(11.1));
+		//STOPPRICE NUMERIC
+		psO.setBigDecimal(221, new BigDecimal(11.1));
+		//STOPPEDTIME DATE/TIMESTAMP
+		psO.setTimestamp(222, myDate);
+		//STRATEGYACCOUNT VARCHAR
+		psO.setString(223, "U");
+		//STRATEGYCROSSACCOUNT VARCHAR
+		psO.setString(224, "U");
+		//STRIKEPRICE NUMERIC
+		psO.setBigDecimal(225, new BigDecimal(11.1));
+		//SWITCHACCOUNT VARCHAR
+		psO.setString(226, "U");
+		//TSXBYPASS VARCHAR
+		psO.setString(227, "U");
+		//TSXREGID VARCHAR
+		psO.setString(228, "U");
+		//TACTIC VARCHAR
+		psO.setString(229, "U");
+		//TAXTYPE VARCHAR
+		psO.setString(230, "U");
+		//TIMEINFORCE VARCHAR
+		psO.setString(231, "U");
+		//TOPTRADE INTEGER
+		psO.setInt(232, 2);
+		//TRANCHE VARCHAR
+		psO.setString(233, "U");
+		//TRANSACTIONNAME VARCHAR
+		psO.setString(234, "U");
+		//TRANSACTIONNUMBER INTEGER
+		psO.setInt(235, 2);
+		//TRANSACTIONTIMESTAMP DATE/TIMESTAMP
+		psO.setTimestamp(236, myDate);
+		//UNDERLYINGSECURITYID VARCHAR
+		psO.setString(237, "U");
+		//UNIQUECLIENTORDERID VARCHAR
+		psO.setString(238, "U");
+		//WSSAREACODE VARCHAR
+		psO.setString(239, "U");
+		//WAVEID VARCHAR
+		psO.setString(240, "U");
+		//WAVEMARK VARCHAR
+		psO.setString(241, "U");
+		//WGHTEDSUMAVERAGEFXRATE NUMERIC
+		psO.setBigDecimal(242, new BigDecimal(11.1));
+		//WGHTEDSUMAVERAGEPRICE NUMERIC
+		psO.setBigDecimal(243, new BigDecimal(11.1));
+		//WGHTEDSUMSTLCURAVERAGEPRICE NUMERIC
+		psO.setBigDecimal(244, new BigDecimal(11.1));
+		//RISK VARCHAR
+		psO.setString(245, "U");
+		//RANK INTEGER
+		psO.setInt(246, 2);
+		//ADVISORYBROKER VARCHAR
+		psO.setString(247, "U");
+		//GLOBALREFERENCEGROUPID VARCHAR
+		psO.setString(248, "U");
+		//ORDERTYPETAG VARCHAR
+		psO.setString(249, "U");
+		//EXTERNALCLIENTBOOKINGTAG VARCHAR
+		psO.setString(250, "U");
+		//ORIGINALLCDTAG INTEGER
+		psO.setInt(251, 2);
+		//UNSOLICITEDOUT VARCHAR
+		psO.setString(252, "U");
+	 
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 
+	
+}
+ 
+
+
+
+private void prepInsertFD() {
+	
+	try {
+		//ACTREPORT VARCHAR
+		//psFD.setString(1, "U");
+		//ASOFTIMESTAMP DATE/TIMESTAMP
+		psFD.setTimestamp(2, myDate);
+		//BOOKSTREETSIDE VARCHAR
+		psFD.setString(3, "U");
+		//BOOKINGENTITY VARCHAR
+		psFD.setString(4, "U");
+		//BOOKINGORIGINALFILLID VARCHAR
+		psFD.setString(5, "U");
+		//CLEARINGBROKER VARCHAR
+		psFD.setString(6, "U");
+		//COMPRESSED INTEGER
+		psFD.setInt(7, 2);
+		//COMPRESSEDFILLID INTEGER
+		psFD.setInt(8, 2);
+		//CONTRABROKER VARCHAR
+		psFD.setString(9, "U");
+		//COUNTERPARTYID VARCHAR
+		psFD.setString(10, "U");
+		//CROSSTRADINGACCOUNT VARCHAR
+		psFD.setString(11, "U");
+		//EXCHANGE VARCHAR
+		psFD.setString(12, "U");
+		//EXCHANGETAG VARCHAR
+		psFD.setString(13, "U");
+		//EXCHANGETRADEDATE DATE/TIMESTAMP
+		psFD.setTimestamp(14, myDate);
+		//EXECUTINGBROKER VARCHAR
+		psFD.setString(15, "U");
+		//EXECUTIONCAPACITY VARCHAR
+		psFD.setString(16, "U");
+		//EXECUTIONDESK VARCHAR
+		psFD.setString(17, "U");
+		//EXECUTIONEXCHANGEID VARCHAR
+		psFD.setString(18, "U");
+		//EXECUTIONEXCHANGETIMESTAMP DATE/TIMESTAMP
+		psFD.setTimestamp(19, myDate);
+		//EXECUTIONORIGINUSER VARCHAR
+		psFD.setString(20, "U");
+		//EXECUTIONPRICE NUMERIC
+		psFD.setBigDecimal(21, new BigDecimal(11.1));
+		//EXECQUANTITY NUMERIC
+		psFD.setBigDecimal(22, new BigDecimal(11.1));
+		//FXRATE NUMERIC
+		psFD.setBigDecimal(23, new BigDecimal(11.1));
+		//FILLTIMESTAMP DATE/TIMESTAMP
+		psFD.setTimestamp(24, myDate);
+		//INSTANCEID VARCHAR
+		psFD.setString(25, "U");
+		//LATEFILL VARCHAR
+		psFD.setString(26, "U");
+		//LATEFLAG VARCHAR
+		psFD.setString(27, "U");
+		//LIQUIDITYINDICATOR VARCHAR
+		psFD.setString(28, "U");
+		//MARKUPPRICE NUMERIC
+		psFD.setBigDecimal(29, new BigDecimal(11.1));
+		//NBBOASK NUMERIC
+		psFD.setBigDecimal(30, new BigDecimal(11.1));
+		//NBBOBID NUMERIC
+		psFD.setBigDecimal(31, new BigDecimal(11.1));
+		//OATSREPORT VARCHAR
+		psFD.setString(32, "U");
+		//ORDERORIGINATORREGIONCODE VARCHAR
+		psFD.setString(33, "U");
+		//ORIGINALEXECUTIONID VARCHAR
+		psFD.setString(34, "U");
+		//PTMLEVY NUMERIC
+		psFD.setBigDecimal(35, new BigDecimal(11.1));
+		//RECYCLEDATE DATE/TIMESTAMP
+		psFD.setTimestamp(36, myDate);
+		//REGNMSEXEMPTCODE VARCHAR
+		psFD.setString(37, "U");
+		//ROOTFILLID VARCHAR
+		psFD.setString(38, "U");
+		//SSEXEMPTCODE INTEGER
+		psFD.setInt(39, 2);
+		//SECURITYID VARCHAR
+		psFD.setString(40, "U");
+		//SERVERID VARCHAR
+		psFD.setString(41, "U");
+		//SETTLEMENTCURRENCYPRICE NUMERIC
+		psFD.setBigDecimal(42, new BigDecimal(11.1));
+		//SIDE VARCHAR
+		psFD.setString(43, "U");
+		//STAMPTAX NUMERIC
+		psFD.setBigDecimal(44, new BigDecimal(11.1));
+		//TAGTYPE INTEGER
+		psFD.setInt(45, 2);
+	
+	
+	} catch (SQLException se) {
+		 
+		se.printStackTrace();
+	}
+	
+	
+}
+
+
+public void prepInsertFA() {//thread starts from here
+	 
+	
+		try {
+			
+			//ACTREPORTINFO1 VARCHAR
+			//psFA.setString(1, "U");
+			//ALLOCQUANTITY NUMERIC
+			psFA.setBigDecimal(2, new BigDecimal(11.1));
+			//AUTOBUSTALLOCATION INTEGER
+			psFA.setInt(3, 2);
+			//BACKCANCELCORRECT VARCHAR
+			psFA.setString(4, "U");
+			//BACKOFFICEFILLID INTEGER
+			psFA.setInt(5, 2);
+			//BOOKINGTAG INTEGER
+			psFA.setInt(6, 2);
+			//BROKERFEE NUMERIC
+			psFA.setBigDecimal(7, new BigDecimal(11.1));
+			//CHANGEDTIMESTAMP DATE/TIMESTAMP
+			psFA.setTimestamp(8, myDate);
+			//CUMULATIVEQUANTITY NUMERIC
+			psFA.setBigDecimal(9, new BigDecimal(11.1));
+			//CUSTOMERACCOUNT VARCHAR
+			psFA.setString(10, "U");
+			//DESTINATIONREGIONCODE VARCHAR
+			psFA.setString(11, "U");
+			//DESTINATIONSERVICENAME VARCHAR
+			psFA.setString(12, "U");
+			//DESTINATIONSERVICESEQNUM INTEGER
+			psFA.setInt(13, 2);
+			//DESTINATIONUSERCC VARCHAR
+			psFA.setString(14, "U");
+			//EXECUTIONID VARCHAR
+			psFA.setString(15, "U");
+			//EXECUTIONUSER VARCHAR
+			psFA.setString(16, "U");
+			//FOBOFILLTRADEID VARCHAR
+			psFA.setString(17, "U");
+			//FXFORWARDPOINTS NUMERIC
+			psFA.setBigDecimal(18, new BigDecimal(11.1));
+			//FILLBOOKINGSTATE VARCHAR
+			psFA.setString(19, "U");
+			//FILLSTATE VARCHAR
+			psFA.setString(20, "U");
+			//GIVEUP VARCHAR
+			psFA.setString(21, "U");
+			//INSTANCEID VARCHAR
+			psFA.setString(22, "U");
+			//ORDERID VARCHAR
+			psFA.setString(23, "U");
+			//PARENTFILLID VARCHAR
+			psFA.setString(24, "U");
+			//PARENTFILLORDERID VARCHAR
+			psFA.setString(25, "U");
+			//REASON INTEGER
+			psFA.setInt(26, 2);
+			//REASONCODE VARCHAR
+			psFA.setString(27, "U");
+			//SALESCREDITACCOUNT VARCHAR
+			psFA.setString(28, "U");
+			//SOURCEREGIONCODE VARCHAR
+			psFA.setString(29, "U");
+			//SOURCESERVICENAME VARCHAR
+			psFA.setString(30, "U");
+			//SOURCEUSERCC VARCHAR
+			psFA.setString(31, "U");
+			//TRANSACTIONNAME VARCHAR
+			psFA.setString(32, "U");
+			//TRANSACTIONNUMBER INTEGER
+			psFA.setInt(33, 2);
+			//TRANSACTIONTIMESTAMP DATE/TIMESTAMP
+			psFA.setTimestamp(34, myDate);
+			//UNALLOCQUANTITY NUMERIC
+			psFA.setBigDecimal(35, new BigDecimal(11.1));
+			//UNIQUECLIENTFILLID VARCHAR
+			psFA.setString(36, "U");
+				
+		
+			} catch (SQLException se) {
+			
+				 
+				se.printStackTrace();
+			}
+ }
+
+public void updateData() throws SQLException {
+	 int i = 0;
+	 
+	 try {
+	 for (i=0;i<numRecords;i++){
+			
+		 	//logme.debug(prefix+runCount+i);
+		 
+		 	psO.setString(1, "U"+runCount);
+		 	psO.setString(253, prefix+runCount+i);
+			psO.executeUpdate();
+			psFD.setString(1, "U"+runCount);
+		 	psFD.setString(46, prefix+runCount+i);
+			psFD.executeUpdate();
+			psFA.setString(1, "U"+runCount);
+		 	psFA.setString(37, prefix+runCount+i);
+			psFA.executeUpdate();
+			
+		}
+	 //conn.commit();
+		
+	 } catch (SQLException se) {
+		 System.out.println("Error inserting "+prefix+runCount+i);
+		 se.printStackTrace();
+	 }
+	 
+finally {
+	 
+	if (psO != null) psO.close();
+	if (psFD != null) psFD.close();
+	if (psFA != null) psFA.close();
+	
+	if (conn != null) {
+		conn.close();
+	}
+
+}
+	 
+	 
+	 
+}
+	
+}
