@@ -1565,3 +1565,10 @@
 2014-01-10T09:12:01,INFO,ComponentStateChangeEvent,instanceIdType=self|instanceId=self|timestamp=2014-01-10T09:12:01|state=on
 2014-01-10T09:12:01,INFO,UpdatedLicenseStateEvent,enforcement=soft|licenseType=local|expirationDate=2014-03-11T09:12:01|used=4|available=60|addons=<empty>
 2014-01-10T09:15:28,INFO,ComponentStateChangeEvent,instanceIdType=self|instanceId=self|timestamp=2014-01-10T09:15:28|state=off
+2014-01-10T11:19:30,INFO,EventManagerStartedEvent,
+2014-01-10T11:19:30,INFO,LicenseActivatedEvent,expirationDate=unset|expirationType=floating-eval|serialNumber=C10EH-H4LD1-48DKR-04AKK-2PHQF|allowedVersions=oss.rmq-3+oss.ws-2+vf.ws-5+oss.rmq-2+vf.gf.acn-7+vf.ws-6+vf.vpg-9.2+vf.hyp-5+vf.sf-1+oss.tc-6+vf.vpg-9.1+vf.ins-2+vf.rmq-3+vf.tc-3+vf.emj-2+vf.emj-1+vf.gf.acn-6+vf.ins-1+oss.tc-7+vf.tc-2+vf.rmq-2+vf.hyp-4|available=60
+2014-01-10T11:19:30,INFO,LicenseActivatedEvent,expirationDate=unset|expirationType=floating-eval|serialNumber=C10EH-H4LD1-48DKR-04AKK-2PHQF|allowedVersions=vf.emj-1+vf.ws-6+vf.rmq-3+oss.rmq-2+vf.gf.acn-7+vf.vpg-9.2+vf.vpg-9.1+vf.hyp-5+vf.rmq-2+oss.tc-7+vf.gf.acn-6+vf.tc-2+oss.rmq-3+vf.ws-5+vf.hyp-4+vf.ins-2+oss.ws-2+vf.emj-2+vf.sf-1+vf.ins-1+oss.tc-6+vf.tc-3|available=60
+2014-01-10T11:19:30,INFO,UpdatedLicenseStateEvent,enforcement=soft|licenseType=local|expirationDate=permanent|used=0|available=60|addons=<empty>
+2014-01-10T11:19:31,INFO,ComponentStateChangeEvent,instanceIdType=self|instanceId=self|timestamp=2014-01-10T11:19:30|state=on
+2014-01-10T11:19:31,INFO,UpdatedLicenseStateEvent,enforcement=soft|licenseType=local|expirationDate=2014-03-11T11:19:31|used=4|available=60|addons=<empty>
+2014-01-10T12:19:30,INFO,UpdatedLicenseStateEvent,enforcement=soft|licenseType=local|expirationDate=2014-03-11T12:19:30|used=4|available=60|addons=<empty>

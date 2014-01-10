@@ -793,20 +793,20 @@ public void updateData() throws SQLException {
 		 	//logme.debug(prefix+runCount+i);
 		 
 		 	psO.setString(1, "U"+runCount);
-		 	psO.setString(253, prefix+runCount+i);
+		 	psO.setString(253, prefix+runCount+"-"+i);
 			psO.executeUpdate();
 			psFD.setString(1, "U"+runCount);
-		 	psFD.setString(46, prefix+runCount+i);
+		 	psFD.setString(46, prefix+runCount+"-"+i);
 			psFD.executeUpdate();
 			psFA.setString(1, "U"+runCount);
-		 	psFA.setString(37, prefix+runCount+i);
+		 	psFA.setString(37, prefix+runCount+"-"+i);
 			psFA.executeUpdate();
 			
 		}
 	 //conn.commit();
 		
 	 } catch (SQLException se) {
-		 System.out.println("Error inserting "+prefix+runCount+i);
+		 System.out.println("Error inserting "+prefix+runCount+"-"+i);
 		 se.printStackTrace();
 	 }
 	 

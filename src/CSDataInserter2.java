@@ -787,17 +787,17 @@ class CSDataInserter2 implements Runnable{
 		 try {
 		 for (i=0;i<numRecords;i++){
 				
-				psO.setString(147, prefix+runCount+i);
+				psO.setString(147, prefix+runCount+"-"+i);
 				psO.executeUpdate();
-				psFD.setString(20, prefix+runCount+i);
+				psFD.setString(20, prefix+runCount+"-"+i);
 				psFD.executeUpdate();
-				psFA.setString(20, prefix+runCount+i);
+				psFA.setString(20, prefix+runCount+"-"+i);
 				psFA.executeUpdate();
 				
 			}
 			
 		 } catch (SQLException se) {
-			 System.out.println("Error inserting "+prefix+runCount+i);
+			 System.out.println("Error inserting "+prefix+runCount+"-"+i);
 			 se.printStackTrace();
 		 }
 	 }

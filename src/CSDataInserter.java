@@ -577,12 +577,12 @@ class CSDataInserter implements Runnable{
 		 
 		 for (i=0;i<numRecords;i++){
 				
-				psO.setString(147, prefix+runCount+i);
+				psO.setString(147, prefix+runCount+"-"+i);
 				psO.executeUpdate();
 			}
 			
 		 } catch (SQLException se) {
-			 System.out.println("Orders: Error inserting "+prefix+runCount+i);
+			 System.out.println("Orders: Error inserting "+prefix+runCount+"-"+i);
 			 se.printStackTrace();
 		 }
 		
@@ -687,12 +687,12 @@ class CSDataInserter implements Runnable{
 		
 		for (i=0;i<numRecords;i++){
 			
-			psFD.setString(20, prefix+runCount+i);
+			psFD.setString(20, prefix+runCount+"-"+i);
 			psFD.executeUpdate();
 		}
 		
 		} catch (SQLException se) {
-			 System.out.println("FillDetails: Error inserting "+prefix+runCount+i); 
+			 System.out.println("FillDetails: Error inserting "+prefix+runCount+"-"+i); 
 			se.printStackTrace();
 		}
 		
@@ -784,13 +784,13 @@ class CSDataInserter implements Runnable{
 					
 				for (i=0;i<numRecords;i++){
 					
-					psFA.setString(20, prefix+runCount+i);
+					psFA.setString(20, prefix+runCount+"-"+i);
 					psFA.executeUpdate();
 				}
 			
 				} catch (SQLException se) {
 				
-					 System.out.println("FillAllocations: Error inserting "+prefix+runCount+i); 
+					 System.out.println("FillAllocations: Error inserting "+prefix+runCount+"-"+i); 
 					se.printStackTrace();
 				}
 			

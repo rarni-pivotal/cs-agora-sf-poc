@@ -435,7 +435,7 @@ public class SFBootstrapper {
 	
 		double endTime   = System.currentTimeMillis();
 		double timeLapsed = endTime - startTime;
-		NumberFormat nf = new DecimalFormat("###.###");
+		NumberFormat nf = new DecimalFormat("###,###.###");
 		double finalNumrecords = nThreads*(numRecords+2*multiplier*numRecords);
 		double tput = (finalNumrecords/timeLapsed)*1000.0;
 		
@@ -482,7 +482,7 @@ public class SFBootstrapper {
 	
 		double endTime   = System.currentTimeMillis();
 		double timeLapsed = endTime - startTime;
-		NumberFormat nf = new DecimalFormat("###.###");
+		NumberFormat nf = new DecimalFormat("###,###.###");
 		double finalNumrecords = nThreads*(numRecords+2*multiplier*numRecords);
 		double tput = (finalNumrecords/timeLapsed)*1000;
 		
@@ -529,7 +529,7 @@ public class SFBootstrapper {
 		double timeLapsed = endTime - startTime;
 		//long finalNumrecords = nThreads*(numRecords+2*multiplier*numRecords);
 		double finalNumrecords = getUpdateCount(init);
-		NumberFormat nf = new DecimalFormat("###.###");;
+		NumberFormat nf = new DecimalFormat("###,###.###");;
 		double tput = (finalNumrecords/timeLapsed)*1000.0;
 		System.out.println("Updated total "+nf.format(finalNumrecords)+" records across 3 tables using multiplier "+ multiplier+", over "+nThreads+" threads in "+ nf.format(timeLapsed)+ " milliseconds with throughput = "+nf.format(tput)+" per second");
 		
@@ -580,7 +580,6 @@ public class SFBootstrapper {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		System.out.println("Credit Suisse SQLFire POC Test Harness Version "+version);
 		System.out.println("Run sh and sl or lp to set host & listener first before starting server (s). Use ?list to see available commands");
 		ShellFactory.createConsoleShell("Agora-SFBootStrap-POC", "", new SFBootstrapper())
         .commandLoop(); // and three.
